@@ -12,18 +12,15 @@ const Register = () => {
     }
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(userData)
         try {
             setIsLoading(true);
-            // const response = await fetch(`${DB_URI}/users`, {method:'POST',body: JSON.stringify(userData)});
+            const init = {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(userData)
+            }
             const response = await fetch(`${DB_URI}/users`,
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(userData)
-                });
+                init);
             if (response.ok && response.status === 201) {
                 const data = await response.json();
                 console.log(data);
@@ -44,11 +41,11 @@ const Register = () => {
     const Form =
         <form onSubmit={handleSubmit}>
             <label>Username</label>
-            <input type='text' name='username' onChange={handleChange} required/>
+            <input type='text' name='username' required onChange={handleChange}/>
             <label>Email</label>
-            <input type='email' name='email' onChange={handleChange} required/>
+            <input type='email' name='email' required onChange={handleChange}/>
             <label>Password</label>
-            <input type='password' name='password' onChange={handleChange} required/>
+            <input type='password' name='password' required onChange={handleChange}/>
             <button>Register</button>
         </form>
     return (

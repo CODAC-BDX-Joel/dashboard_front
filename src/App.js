@@ -10,7 +10,9 @@ import NavBar from "./components/NavBar";
 import AdminPage from "./views/AdminPage";
 import LoginPage from "./views/LoginPage";
 import Logout from "./views/Logout";
+import MyDashboard from "./views/MyDashboard";
 import NotFound from "./views/NotFound";
+import AuthContextProvider from "./contexts/AuthContext";
 
 function App() {
     return (
@@ -18,12 +20,15 @@ function App() {
             <Router>
                 <NavBar/>
                 <Switch>
-                    <Route exact path='/' component={HomePage}/>
-                    <Route path='/register' component={Register}/>
-                    <Route path='/admin' component={AdminPage}/>
-                    <Route path='/login' component={LoginPage}/>
-                    <Route path='/logout' component={Logout}/>
-                    <Route path='*' component={NotFound}/>
+                    <AuthContextProvider>
+                        <Route exact path='/' component={HomePage}/>
+                        <Route path='/register' component={Register}/>
+                        <Route path='/admin' component={AdminPage}/>
+                        <Route path='/login' component={LoginPage}/>
+                        <Route path='/logout' component={Logout}/>
+                        <Route path='/myDashboard' component={MyDashboard}/>
+                        {/*<Route path='*' component={NotFound}/>*/}
+                    </AuthContextProvider>
                 </Switch>
             </Router>
 
