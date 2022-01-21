@@ -8,11 +8,13 @@ const NewsWidget = () => {
         const fetchNewsData = async () => {
             try {
                 setIsLoading(true);
-                const response = await fetch('https://newsapi.org/v2/top-headlines?country=gb&pageSize=5&apiKey=92fb0d77e2f84529ba0eebbe54076d1f');
+                // const response = await fetch('https://newsapi.org/v2/top-headlines?country=gb&pageSize=5&apiKey=92fb0d77e2f84529ba0eebbe54076d1f');
+                const response = await fetch('https://gnews.io/api/v4/top-headlines?token=77e1cf8e43d41dae8953333b65af675b&max=4&lang=en&country=gb');
                 if (response.ok && response.status === 200) {
                     setIsLoading(true);
                     const data = await response.json();
-                    setNewsData(data);
+                    console.log('hello', data)
+                    setNewsData(data.articles);
                     setIsLoading(false)
                 } else {
                     setIsLoading(false);
@@ -32,14 +34,14 @@ const NewsWidget = () => {
             <div className='news_widgets_container'>
                 <h1>News</h1>
                 <div className='news_widgets_wrapper'>
-                    {newsData.articles.map(article => {
+                    {newsData?.map(article => {
                         return (
-                            <div key={article.url} className='news_widget_container'>
-                                <img src={article.urlToImage}/>
+                            <div key={article.source.url} className='news_widget_container'>
+                                <img src={article.image}/>
                                 <h3>{article.title}</h3>
                                 <p>{article.description}</p>
                                 <h3>{article.source.name}</h3>
-                                <a href={article.url} target="_blank">Read this article</a>
+                                <a href={article.source.url} target="_blank">Read this article</a>
                             </div>
                         )
                     })}
