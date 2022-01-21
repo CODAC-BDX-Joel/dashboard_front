@@ -33,7 +33,7 @@ const LoginPage = (props) => {
                 const data = await response.json();
                 setUserToken(data.access_token);
                 Cookies.set('userToken', data.access_token);
-                console.log('user current widgets', data.user.widgetsData);
+                // console.log('user current widgets', data.user.widgetsData);
 
                 //store user profile (complete infos) in localstorage
                 localStorage.setItem('userProfile', JSON.stringify({_id: data.user._id,username: data.user.username}))

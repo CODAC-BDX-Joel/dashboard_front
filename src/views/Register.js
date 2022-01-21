@@ -24,7 +24,7 @@ const Register = () => {
                 init);
             if (response.ok && response.status === 201) {
                 const data = await response.json();
-                console.log(data);
+                // console.log(data);
                 setIsLoading(false);
                 history.push('login');
             } else {

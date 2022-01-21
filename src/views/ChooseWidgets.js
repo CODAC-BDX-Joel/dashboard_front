@@ -30,7 +30,7 @@ const ChooseWidgets = () => {
         setIsLoading(true);
         const fetchAllWidgets = async () => {
             try {
-                console.log('fetching widgets data from db');
+                // console.log('fetching widgets data from db');
                 const response = await fetch(`${DB_URI}/widgets`);
                 if (response.ok && response.status === 200) {
                     const data = await response.json();
@@ -68,7 +68,7 @@ const ChooseWidgets = () => {
 
     const handleTickBox = (e) => {
         setSelectedWidgets([...selectedWidgets, e.target.value])
-        console.log('box checked')
+        // console.log('box checked')
     }
 
     const handleSubscribeWidgets = async () => {
