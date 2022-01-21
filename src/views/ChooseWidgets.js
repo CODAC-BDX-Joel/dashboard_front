@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useHistory} from "react-router-dom";
 import Cookies from 'js-cookie';
+import {DB_URI} from "../conf/conf";
 
 const ChooseWidgets = () => {
     document.querySelector('title').innerText = 'Widgets List';
@@ -30,7 +31,7 @@ const ChooseWidgets = () => {
         const fetchAllWidgets = async () => {
             try {
                 console.log('fetching widgets data from db');
-                const response = await fetch('http://localhost:3000/widgets');
+                const response = await fetch(`${DB_URI}/widgets`);
                 if (response.ok && response.status === 200) {
                     const data = await response.json();
                     setWidgetsList(data);
@@ -73,7 +74,7 @@ const ChooseWidgets = () => {
     const handleSubscribeWidgets = async () => {
         //STEP 1 Update user's widgetsList in db
         const userId = userProfile._id;
-        const endPointUserUpdate = `http://localhost:3000/users/${userId}`;
+        const endPointUserUpdate = `${DB_URI}/users/${userId}`;
         const requestBody = {
             // email: userProfile.user.email,
             // username: userProfile.user.username,
@@ -93,7 +94,7 @@ const ChooseWidgets = () => {
             const data = await response.json();
 
             //STEP 2 once user updated in db,  fetch user widgets updated from db
-            const fetchWidgetsUpdatedResponse = await fetch(`http://localhost:3000/widgets/userWidgets/${userProfile._id}`);
+            const fetchWidgetsUpdatedResponse = await fetch(`${DB_URI}/widgets/userWidgets/${userProfile._id}`);
             const updatedWidgetsData = await fetchWidgetsUpdatedResponse.json();
 
             //STEP 3 update widgetsData in local storage

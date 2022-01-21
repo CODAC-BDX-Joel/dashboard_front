@@ -1,1 +1,2 @@
-export const DB_URI ='http://localhost:3000';
+export const DB_URI = 'https://widgets-dashboard.herokuapp.com';
+export const DB_URI_DEV = 'http://localhost:3000';
