@@ -8,12 +8,10 @@ const NewsWidget = () => {
         const fetchNewsData = async () => {
             try {
                 setIsLoading(true);
-                // const response = await fetch('https://newsapi.org/v2/top-headlines?country=gb&pageSize=5&apiKey=92fb0d77e2f84529ba0eebbe54076d1f');
                 const response = await fetch('https://gnews.io/api/v4/top-headlines?token=77e1cf8e43d41dae8953333b65af675b&max=4&lang=en&country=gb');
                 if (response.ok && response.status === 200) {
                     setIsLoading(true);
                     const data = await response.json();
-                    console.log('hello', data)
                     setNewsData(data.articles);
                     setIsLoading(false)
                 } else {
