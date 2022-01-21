@@ -4,9 +4,9 @@ export const AuthContext = createContext();
 
 
 const AuthContextProvider = (props) => {
-    const [userToken, setUserToken] = useState('token12144');
+    const [userToken, setUserToken] = useState();
     return (
-        <AuthContext.Provider value={{userToken,setUserToken}}>
+        <AuthContext.Provider value={{userToken, setUserToken}}>
             {props.children}
         </AuthContext.Provider>
     );

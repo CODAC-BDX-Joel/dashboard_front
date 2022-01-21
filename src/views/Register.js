@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import {useHistory} from "react-router-dom";
 
 const Register = () => {
+    document.querySelector('title').innerText = 'Register';
     const history = useHistory();
     const [isLoading, setIsLoading] = useState(false)
     const [userData, setUserData] = useState({});

@@ -1,14 +1,17 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 
-const NavBar = () => {
+const NavBar = ({userToken}) => {
+
     return (
         <nav className='navbar_container'>
+            {/*<h3>Current token: {userToken}</h3>*/}
             <Link to='/'>Home</Link>
-            <Link to='/register'>Register</Link>
-            <Link to='/admin'>Admin</Link>
-            <Link to='/login'>Login</Link>
-            <Link to='/logout'>Logout</Link>
+            {userToken && <Link to='/myDashboard'>My Dashboard</Link>}
+            {!userToken && <Link to='/register'>Register</Link>}
+            {/*{userToken && <Link to='/admin'>Admin</Link>}*/}
+            {!userToken && <Link to='/login'>Login</Link>}
+            {userToken && <Link to='/logout'>Logout</Link>}
         </nav>
     );
 };
